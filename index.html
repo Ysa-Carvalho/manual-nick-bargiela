@@ -3,19 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Manual de Marca — Nick Bargiela</title>
+<title>Brandbook — Nick Bargiela</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Michroma&display=swap">
 <style>
-/* Identidade unificada Nick Bargiela. Preto de fundo, off-white no texto, azul Voyager só como sinal, âmbar só dentro de imagem. Space Grotesk + JetBrains Mono. */
 :root{
   --bg:#0a0a0b;
   --surface:#111317;
   --fg:#fefeff;
   --muted:#8b9099;
-  --signal:#1675f9;      /* azul Voyager, apenas sinal */
-  --amber:#e3a755;       /* âmbar fósforo, apenas em imagem */
+  --signal:#1675f9;
+  --amber:#e3a755;
   --line:rgba(22,117,249,.22);
   --maxw:960px;
   --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
@@ -38,6 +37,12 @@ p{margin:0 0 1rem;max-width:62ch;color:#e9ecef}
 .muted{color:var(--muted)}
 .sig{color:var(--signal)}
 
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:.7rem max(20px,env(safe-area-inset-left,0px));overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+.nav a{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:.35rem .6rem;border-radius:6px;transition:color .2s,background .2s}
+.nav a:hover{color:var(--fg);background:var(--surface)}
+.nav a+a{margin-left:.3rem}
+
 /* capa */
 .cover{min-height:90vh;display:flex;flex-direction:column;justify-content:center;gap:2rem;position:relative;overflow:hidden}
 .cover .amberglow{position:absolute;right:-6%;top:6%;width:min(46%,340px);aspect-ratio:1;border-radius:50%;
@@ -52,16 +57,6 @@ p{margin:0 0 1rem;max-width:62ch;color:#e9ecef}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:start}
 @media(max-width:720px){.two{grid-template-columns:1fr}}
 
-/* lista migração */
-.merge{display:grid;gap:12px;margin-top:1.6rem}
-.merge .row{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:center;border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;background:var(--surface)}
-@media(max-width:620px){.merge .row{grid-template-columns:1fr;text-align:left}}
-.merge .from{color:var(--muted);font-size:.92rem}
-.merge .from b{color:var(--fg);font-weight:600;display:block;font-family:var(--sans)}
-.merge .arrow{font-family:var(--mono);color:var(--signal);font-weight:700}
-@media(max-width:620px){.merge .arrow{display:none}}
-.merge .to{font-size:.92rem;color:#e9ecef}
-
 /* paleta */
 .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:1.6rem}
 @media(max-width:720px){.swatches{grid-template-columns:repeat(2,1fr)}}
@@ -71,8 +66,6 @@ p{margin:0 0 1rem;max-width:62ch;color:#e9ecef}
 .sw .meta b{font-family:var(--sans);font-weight:600;font-size:.86rem;display:block}
 .sw .meta code{font-family:var(--mono);font-size:.72rem;color:var(--signal)}
 .sw .meta span{font-family:var(--sans);display:block;color:var(--muted);font-size:.76rem;margin-top:.35rem;line-height:1.4}
-.out{margin-top:1.4rem;font-family:var(--mono);font-size:.76rem;color:var(--muted);letter-spacing:.02em}
-.out s{color:#5a5f66}
 
 /* tipografia */
 .typecard{border:1px solid var(--line);border-radius:12px;padding:1.5rem;background:var(--surface);margin-top:1.2rem}
@@ -81,6 +74,13 @@ p{margin:0 0 1rem;max-width:62ch;color:#e9ecef}
 .s-mono{font-family:var(--mono);font-size:1.25rem;color:var(--fg)}
 .s-mono .n{color:var(--signal)}
 .glyphs{font-family:var(--sans);color:var(--muted);margin-top:.5rem;font-size:.9rem}
+
+/* logo */
+.logo-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:1.6rem}
+@media(max-width:720px){.logo-grid{grid-template-columns:1fr;max-width:420px}}
+.logo-box{border:1px solid var(--line);border-radius:12px;padding:2rem;display:flex;align-items:center;justify-content:center;min-height:200px}
+.logo-box svg{max-width:100%;height:auto}
+.logo-box.light{background:#fefeff}
 
 /* elemento painel */
 .elem{display:grid;grid-template-columns:300px 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center;margin-top:1.6rem}
@@ -96,21 +96,40 @@ p{margin:0 0 1rem;max-width:62ch;color:#e9ecef}
 .base h3{margin:.3rem 0 .35rem}
 .base p{font-size:.9rem;margin:0;color:var(--muted);max-width:none}
 
+/* direção de arte */
+.art-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:1.6rem}
+@media(max-width:720px){.art-grid{grid-template-columns:1fr;max-width:420px}}
+.art-card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.art-card img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.art-card .info{padding:1rem 1.2rem}
+.art-card .info h3{margin:0 0 .4rem}
+.art-card .info p{margin:0;font-size:.88rem;color:var(--muted)}
+
+/* regras */
+.rules{display:grid;gap:12px;margin-top:1.6rem}
+.rule{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;background:var(--surface)}
+.rule .icon{font-family:var(--mono);font-size:.7rem;font-weight:700;color:var(--signal);border:1px solid var(--line);border-radius:5px;padding:.2rem .45rem;white-space:nowrap}
+.rule h3{margin:0 0 .2rem}
+.rule p{margin:0;font-size:.9rem;color:var(--muted);max-width:none}
+
 .media-row{display:grid;grid-template-columns:260px 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center;margin-top:1.6rem}
 @media(max-width:720px){.media-row{grid-template-columns:1fr;max-width:420px}}
 .reel{width:100%;aspect-ratio:9/16;object-fit:cover;border:1px solid var(--line);border-radius:14px;display:block}
 
-/* correções / passos */
-.checks{list-style:none;padding:0;margin:1.4rem 0 0;display:grid;gap:10px}
-.checks li{display:grid;grid-template-columns:auto 1fr;gap:.9rem;align-items:start;font-size:.95rem;color:#e9ecef}
-.checks li::before{content:"OK";font-family:var(--mono);font-size:.64rem;font-weight:700;color:var(--signal);border:1px solid var(--line);border-radius:5px;padding:.15rem .35rem;margin-top:.15rem}
-.steps{list-style:none;padding:0;margin:1.4rem 0 0;display:grid;gap:12px;counter-reset:s}
-.steps li{counter-increment:s;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;background:var(--surface)}
-.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);color:var(--signal);font-weight:700;font-size:.9rem}
-.steps h3{margin:0 0 .2rem}
-.steps p{margin:0;font-size:.9rem;color:var(--muted);max-width:none}
-.pending{border-left:2px solid var(--signal);padding-left:1rem;margin-top:1.4rem}
-.pending p{color:#e9ecef;font-size:.95rem}
+/* aplicação */
+.apps{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:1.6rem}
+@media(max-width:720px){.apps{grid-template-columns:1fr}}
+.app-card{border:1px solid var(--line);border-radius:12px;padding:1.2rem 1.4rem;background:var(--surface)}
+.app-card h3{margin:0 0 .4rem;font-size:.95rem}
+.app-card p{margin:0;font-size:.88rem;color:var(--muted)}
+.app-card .tag{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);margin-bottom:.6rem}
+
+/* ferramentas */
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:1.6rem}
+@media(max-width:720px){.tools{grid-template-columns:1fr}}
+.tool-card{border:1px solid var(--line);border-radius:12px;padding:1.2rem;background:var(--surface);text-align:center}
+.tool-card .name{font-family:var(--mono);font-weight:700;font-size:.9rem;margin-bottom:.5rem}
+.tool-card p{font-size:.82rem;color:var(--muted);margin:0}
 
 a{color:var(--signal)}
 .print-fab{position:fixed;right:18px;bottom:18px;z-index:1000;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
@@ -120,8 +139,7 @@ a{color:var(--signal)}
 @media print{
   @page{size:A4;margin:0}
   body{background:#0a0a0b}
-  body::before{display:none}
-  .print-fab{display:none}
+  body::before,.nav,.print-fab{display:none}
   .page{max-width:none;border-bottom:none;page-break-after:always;padding:34px 40px;min-height:auto}
   .cover{min-height:auto;padding-top:56px;padding-bottom:56px}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -132,53 +150,50 @@ a{color:var(--signal)}
 
 <button class="print-fab" onclick="window.print()">Salvar em PDF</button>
 
+<!-- NAV -->
+<nav class="nav">
+<a href="#capa">Início</a>
+<a href="#paleta">Paleta</a>
+<a href="#tipo">Tipografia</a>
+<a href="#wordmark">Wordmark</a>
+<a href="#logo">Logo Voyager</a>
+<a href="#elemento">Elemento</a>
+<a href="#direcao">Direção de arte</a>
+<a href="#bases">Bases</a>
+<a href="#reels">Reels</a>
+<a href="#card-x">Card X</a>
+<a href="#aplicacao">Aplicação</a>
+<a href="#ferramentas">Ferramentas</a>
+</nav>
+
 <!-- CAPA -->
-<section class="page cover">
+<section class="page cover" id="capa">
   <div class="amberglow"></div>
-  <div class="kicker">Manual de marca · v2 · identidade unificada</div>
+  <div class="kicker">Brandbook · v1.0 · definitivo</div>
   <div class="wordmark">Nick Bargiela<span class="dot"></span></div>
-  <p class="sub">Sistemas inteligentes, automações e IA. Uma só direção visual para o Instagram, o site, as propostas e a Voyager.</p>
+  <p class="sub">Sistemas inteligentes, automações e IA. Direção visual única para tudo: Instagram, site, propostas e Voyager.</p>
   <div class="foot">
     <div>Direção <b>Cassette Futurism</b></div>
     <div>Sinal <b>#1675F9</b></div>
-    <div>16 out 2026</div>
-  </div>
-</section>
-
-<!-- A VIRADA -->
-<section class="page">
-  <p class="kicker">A virada</p>
-  <div class="two">
-    <div><h2>Uma direção que engole as outras</h2></div>
-    <div>
-      <p class="lead">Até agora quatro identidades conviviam. Cada canal falava uma língua visual diferente.</p>
-      <p>A partir de agora o cassette futurism unifica tudo. O verde sai de todos os lugares. O azul vivo da Voyager vira o sinal da marca inteira, e o mesmo par de fontes vale para cada peça.</p>
-    </div>
-  </div>
-  <div class="merge">
-    <div class="row"><div class="from"><b>Instagram</b>azul pálido e sépia, fontes sem nome</div><div class="arrow">→</div><div class="to">azul Voyager, âmbar, Space Grotesk e JetBrains Mono</div></div>
-    <div class="row"><div class="from"><b>Site Claude para Humanos</b>verde lima e cinco fontes</div><div class="arrow">→</div><div class="to">sai o verde, ficam Space Grotesk e JetBrains Mono</div></div>
-    <div class="row"><div class="from"><b>Propostas e PDFs</b>verde e Poppins</div><div class="arrow">→</div><div class="to">nova paleta e novas fontes</div></div>
-    <div class="row"><div class="from"><b>Voyager</b>azul vivo no logo</div><div class="arrow">→</div><div class="to">esse azul vira o sinal de toda a marca</div></div>
+    <div>17 out 2026</div>
   </div>
 </section>
 
 <!-- PALETA -->
-<section class="page">
+<section class="page" id="paleta">
   <p class="kicker">Paleta e função</p>
   <h2>Quatro cores, cada uma com um papel</h2>
-  <p>A regra importa mais que a cor. Azul só como sinal, âmbar só dentro de imagem. Nada de cor chapada atrás de texto além do preto.</p>
+  <p>A regra importa mais que a cor. Azul só como sinal, âmbar só dentro de imagem. Nenhuma cor chapada serve de fundo para texto além do preto.</p>
   <div class="swatches">
-    <div class="sw"><div class="chip" style="background:#0a0a0b"></div><div class="meta"><b>Preto</b><code>#0A0A0B</code><span>Fundo de tudo.</span></div></div>
-    <div class="sw"><div class="chip" style="background:#fefeff"></div><div class="meta"><b>Off-white</b><code>#FEFEFF</code><span>Todo o texto.</span></div></div>
-    <div class="sw"><div class="chip" style="background:#1675f9"></div><div class="meta"><b>Azul Voyager</b><code>#1675F9</code><span>Só sinal: seta, ponto, LED, numeração. Nunca em título.</span></div></div>
-    <div class="sw"><div class="chip" style="background:#e3a755"></div><div class="meta"><b>Âmbar fósforo</b><code>#E3A755</code><span>Só dentro de imagem: tela, brilho, lâmpada.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#0a0a0b"></div><div class="meta"><b>Preto</b><code>#0A0A0B</code><span>Fundo universal. Todo material nasce no preto.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#fefeff"></div><div class="meta"><b>Off-white</b><code>#FEFEFF</code><span>Todo o texto: títulos, corpo, legendas.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#1675f9"></div><div class="meta"><b>Azul Voyager</b><code>#1675F9</code><span>Exclusivo para sinal: seta, ponto, LED, label, numeração. Nunca em título ou fundo.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#e3a755"></div><div class="meta"><b>Âmbar fósforo</b><code>#E3A755</code><span>Só dentro de imagem: tela CRT, brilho, lâmpada. Nunca em texto ou preenchimento plano.</span></div></div>
   </div>
-  <p class="out">Saem da marca: <s>azul pálido #9BB5C8</s> · <s>sépia #C9A876</s> · <s>verde #ABFA54</s> · <s>verde #5D8A2E</s></p>
 </section>
 
 <!-- TIPOGRAFIA -->
-<section class="page">
+<section class="page" id="tipo">
   <p class="kicker">Tipografia</p>
   <h2>Duas famílias, papéis claros</h2>
   <p>A grotesca carrega títulos e corpo. A mono entra no arroba, nos números, nas labels e no wordmark. Número de resultado sempre em mono, subtítulo sempre em grotesca.</p>
@@ -191,31 +206,68 @@ a{color:var(--signal)}
     <div class="role">JetBrains Mono · arroba, números, labels, wordmark</div>
     <div class="s-mono">@nickbargiela · <span class="n">4h → 20min</span> · R$14.000</div>
   </div>
-  <p class="out">Saem: <s>Newsreader</s> · <s>Fraunces</s> · <s>Plus Jakarta Sans</s> · <s>Poppins</s></p>
 </section>
 
 <!-- WORDMARK -->
-<section class="page">
+<section class="page" id="wordmark">
   <p class="kicker">Wordmark</p>
   <div class="two">
     <div><h2>Nick Bargiela em JetBrains Mono</h2></div>
     <div>
-      <p>O nome vem da mono, com um ponto azul ao final como assinatura de sinal. Dá um ar de terminal, coerente com todo o sistema.</p>
-      <p class="muted">O logo da Voyager segue como está, com o A sem barra na solução do worm da NASA. O wordmark acompanha o logo, não o substitui.</p>
+      <p>O nome pessoal vem em JetBrains Mono bold, com um ponto azul ao final como assinatura de sinal. Ar de terminal, coerente com a estética.</p>
+      <p class="muted">Acompanha o logo da Voyager, não o substitui. São duas marcas que convivem.</p>
     </div>
   </div>
   <div style="margin-top:2rem"><div class="wordmark" style="font-size:clamp(2rem,6vw,3.6rem)">Nick Bargiela<span class="dot"></span></div></div>
 </section>
 
-<!-- ELEMENTO -->
-<section class="page">
+<!-- LOGO VOYAGER -->
+<section class="page" id="logo">
+  <p class="kicker">Logo Voyager</p>
+  <h2>Arco orbital, estrela e dot azul</h2>
+  <p>O logo combina o arco de órbita, a estrela de quatro pontas e o dot azul Voyager (#1675F9). A tipografia do logo usa Michroma, geométrica e larga.</p>
+  <div class="logo-grid">
+    <div class="logo-box" style="background:var(--bg)">
+      <!-- Logo sobre fundo escuro -->
+      <svg viewBox="0 0 600 450" width="400">
+        <g transform="translate(300, 180)">
+          <path d="M -75 95 C -60 20, 10 -60, 100 -95 C 135 -108, 160 -105, 175 -90" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+          <g transform="translate(-62, 72)"><path d="M 0 -22 C 2 -6, 6 -2, 22 0 C 6 2, 2 6, 0 22 C -2 6, -6 2, -22 0 C -6 -2, -2 -6, 0 -22 Z" fill="#ffffff"/></g>
+          <circle cx="182" cy="-88" r="14" fill="#1675F9"/>
+        </g>
+        <text x="300" y="330" text-anchor="middle" font-family="Michroma,sans-serif" font-weight="400" font-size="52" letter-spacing="10" fill="#ffffff">VOYAGER</text>
+        <text x="300" y="370" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-weight="300" font-size="20" letter-spacing="4" fill="#c8c8c8">Sistemas Inteligentes</text>
+      </svg>
+    </div>
+    <div class="logo-box light">
+      <!-- Logo sobre fundo claro -->
+      <svg viewBox="0 0 600 450" width="400">
+        <g transform="translate(300, 180)">
+          <path d="M -75 95 C -60 20, 10 -60, 100 -95 C 135 -108, 160 -105, 175 -90" fill="none" stroke="#0a0a0b" stroke-width="3.5" stroke-linecap="round"/>
+          <g transform="translate(-62, 72)"><path d="M 0 -22 C 2 -6, 6 -2, 22 0 C 6 2, 2 6, 0 22 C -2 6, -6 2, -22 0 C -6 -2, -2 -6, 0 -22 Z" fill="#0a0a0b"/></g>
+          <circle cx="182" cy="-88" r="14" fill="#1675F9"/>
+        </g>
+        <text x="300" y="330" text-anchor="middle" font-family="Michroma,sans-serif" font-weight="400" font-size="52" letter-spacing="10" fill="#0a0a0b">VOYAGER</text>
+        <text x="300" y="370" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-weight="300" font-size="20" letter-spacing="4" fill="#555">Sistemas Inteligentes</text>
+      </svg>
+    </div>
+  </div>
+  <div class="rules" style="margin-top:1.4rem">
+    <div class="rule"><div class="icon">DOT</div><div><h3>Ponto sempre em #1675F9</h3><p>O dot azul é o único elemento colorido do logo, tanto sobre fundo escuro quanto claro.</p></div></div>
+    <div class="rule"><div class="icon">ÁREA</div><div><h3>Margem de segurança</h3><p>Manter espaço livre ao redor igual à altura da estrela de quatro pontas.</p></div></div>
+    <div class="rule"><div class="icon">MIN</div><div><h3>Tamanho mínimo</h3><p>140 px de largura para tela, 35 mm para impressão. Abaixo disso usar só o ícone (arco + estrela + dot).</p></div></div>
+  </div>
+</section>
+
+<!-- ELEMENTO DE MARCA -->
+<section class="page" id="elemento">
   <p class="kicker">Elemento de marca</p>
-  <h2>O painel, não a grade neon</h2>
+  <h2>O painel analógico</h2>
   <div class="elem">
     <img class="shot" src="https://d8j0ntlcm91z4.cloudfront.net/user_3HCH2hCBDXW1q3Lxm2VntHGqpMj/hf_20261016_191702_4d23f484-e9c4-43d2-b014-fc4f4a8f86d3.png" alt="Post com painel bege, interruptor AUTO MANUAL e LED azul">
     <div>
-      <p>A grade neon saiu. No lugar entra um painel bege dos anos 70, com interruptor AUTO e MANUAL e um LED azul de status como único sinal aceso.</p>
-      <p class="muted">É o detalhe que amarra automação e o toque analógico, sem poluir o fundo preto.</p>
+      <p>Painel bege dos anos 70, com interruptor AUTO/MANUAL e um LED azul de status como único sinal aceso.</p>
+      <p class="muted">Amarra automação e toque analógico, sem poluir o fundo preto. Usa como textura de apoio, nunca como elemento principal isolado.</p>
     </div>
   </div>
 </section>
@@ -227,74 +279,117 @@ a{color:var(--signal)}
   <div class="elem">
     <img class="shot" src="https://d8j0ntlcm91z4.cloudfront.net/user_3HCH2hCBDXW1q3Lxm2VntHGqpMj/hf_20261016_191702_57d70c6b-aa88-4e17-b298-5de628ce570a.png" alt="Capa com degradê e seta azul">
     <div>
-      <p>Toda arte com foto dissolve no preto, sem corte reto. O âmbar vive na tela, não no texto. A seta de arrastar agora é azul Voyager, e aparece só na capa de carrossel.</p>
+      <p>Toda arte com imagem dissolve no preto via gradiente. Sem corte reto. O âmbar vive na tela do CRT, não no texto.</p>
+      <p class="muted">A seta azul Voyager aparece só na capa de carrossel. Reel e story não levam seta.</p>
     </div>
   </div>
 </section>
 
+<!-- DIREÇÃO DE ARTE -->
+<section class="page" id="direcao">
+  <p class="kicker">Direção de arte</p>
+  <h2>Cenas com vida, não objetos soltos</h2>
+  <p>Toda imagem gerada segue a estética cassette futurism com profundidade e contexto. Nunca um objeto isolado flutuando num fundo preto. Duas variações coexistem:</p>
+
+  <div class="art-grid">
+    <div class="art-card">
+      <img id="art-defined" src="https://d8j0ntlcm91z4.cloudfront.net/user_3HCH2hCBDXW1q3Lxm2VntHGqpMj/hf_20261017_125156_fefd8f0b-3a31-47ba-84b3-59fe047cc4a2.png" alt="Cenário definido">
+      <div class="info"><h3>Cenário definido</h3><p>Mesa, estante, objetos ao redor. Profundidade de campo, iluminação cinematográfica. Para posts de método e bastidores.</p></div>
+    </div>
+    <div class="art-card">
+      <img id="art-faded" src="https://d8j0ntlcm91z4.cloudfront.net/user_3HCH2hCBDXW1q3Lxm2VntHGqpMj/hf_20261017_125155_ec0e887b-d3c9-42e6-8de7-f23ccd593c71.png" alt="Cenário esmaecido">
+      <div class="info"><h3>Cenário esmaecido</h3><p>Atmosférico, fundo desfocado, ambiente mais onírico. Para frases de posicionamento e provocações.</p></div>
+    </div>
+  </div>
+
+  <div class="rules" style="margin-top:1.6rem">
+    <div class="rule"><div class="icon">CENA</div><div><h3>Sempre com contexto</h3><p>Objetos em cima de mesas, estantes, ao lado de equipamentos. Profundidade de campo cinematográfica. Nunca um item solto no vazio.</p></div></div>
+    <div class="rule"><div class="icon">TELA</div><div><h3>Monitor com mensagem real</h3><p>Toda tela de CRT exibe texto legível em mono âmbar, que reforça o tema do post (título, dado, status). Nunca só um brilho decorativo.</p></div></div>
+    <div class="rule"><div class="icon">MÃO</div><div><h3>Elemento humano</h3><p>Mãos operando equipamentos (inserindo fita, girando dial, digitando) trazem presença e ação. Usar quando o post fala de processo ou bastidor.</p></div></div>
+    <div class="rule"><div class="icon">TEMA</div><div><h3>Elementos temáticos</h3><p>Astronautas, satélites, foguetes, sondas e painéis de controle ampliam o vocabulário visual dentro do cassette futurism. Adequar ao tema do post.</p></div></div>
+    <div class="rule"><div class="icon">PT-BR</div><div><h3>Português sempre correto</h3><p>Acentos, cedilhas e pontuação rigorosos em toda arte gerada. "Automação" com til e cedilha, sem exceção.</p></div></div>
+    <div class="rule"><div class="icon">ROSTO</div><div><h3>Foto do Nícolas</h3><p>Rosto real só nos reels que ele grava. Posts estáticos e capas de carrossel usam cenas de objetos, nunca IA de rosto.</p></div></div>
+  </div>
+</section>
+
 <!-- BASES -->
-<section class="page">
+<section class="page" id="bases">
   <p class="kicker">As bases de post</p>
-  <h2>Três modelos, já no sistema novo</h2>
+  <h2>Três modelos de partida</h2>
   <div class="bases">
     <div class="base"><figure>
       <img class="shot" src="https://d8j0ntlcm91z4.cloudfront.net/user_3HCH2hCBDXW1q3Lxm2VntHGqpMj/hf_20261016_191702_57d70c6b-aa88-4e17-b298-5de628ce570a.png" alt="Capa de carrossel">
-      <figcaption><div class="tag">Capa · degradê</div><h3>Abertura de carrossel</h3><p>Foto com degradê, título off-white, seta azul no canto.</p></figcaption>
+      <figcaption><div class="tag">Capa · degradê</div><h3>Abertura de carrossel</h3><p>Foto com degradê para o preto, título off-white, seta azul no canto inferior.</p></figcaption>
     </figure></div>
     <div class="base"><figure>
       <img class="shot" src="https://d8j0ntlcm91z4.cloudfront.net/user_3HCH2hCBDXW1q3Lxm2VntHGqpMj/hf_20261016_191701_cbe6d650-fd64-4620-8630-739511e478d3.png" alt="Destaque de resultado">
-      <figcaption><div class="tag">Resultado</div><h3>Prova em número</h3><p>Número em mono, subtítulo em grotesca, index azul no canto.</p></figcaption>
+      <figcaption><div class="tag">Resultado</div><h3>Prova em número</h3><p>Número em JetBrains Mono, subtítulo em Space Grotesk, index azul no canto.</p></figcaption>
     </figure></div>
     <div class="base"><figure>
       <img class="shot" src="https://d8j0ntlcm91z4.cloudfront.net/user_3HCH2hCBDXW1q3Lxm2VntHGqpMj/hf_20261016_191702_4d23f484-e9c4-43d2-b014-fc4f4a8f86d3.png" alt="Post de frase com painel">
-      <figcaption><div class="tag">Frase</div><h3>Posicionamento</h3><p>Frase afiada com o painel AUTO/MANUAL e LED azul.</p></figcaption>
+      <figcaption><div class="tag">Frase</div><h3>Posicionamento</h3><p>Frase afiada sobre fundo preto com painel AUTO/MANUAL e LED azul.</p></figcaption>
     </figure></div>
   </div>
 </section>
 
 <!-- REELS -->
-<section class="page">
+<section class="page" id="reels">
   <p class="kicker">Reels e story</p>
   <h2>Vertical, texto na área central</h2>
   <div class="media-row">
     <img class="reel" src="https://d8j0ntlcm91z4.cloudfront.net/user_3HCH2hCBDXW1q3Lxm2VntHGqpMj/hf_20261016_191701_e4747649-14a2-477a-9e33-cc4d93bde3ed.png" alt="Capa de reels vertical">
     <div>
-      <p>No reel o texto fica na área central segura, longe das bordas. A fita leva uma etiqueta em mono, sem cedilha. E nada de seta, porque reel não arrasta.</p>
-      <p class="muted">O mesmo enquadramento vira base de story.</p>
+      <p>No reel o texto fica na área central segura, longe das bordas. A fita leva etiqueta em mono. Sem seta, porque reel não arrasta.</p>
+      <p class="muted">O mesmo enquadramento vira base de story. Capas de reel usam cenas cassette futurism, nunca o rosto do Nícolas gerado por IA.</p>
     </div>
   </div>
 </section>
 
 <!-- X -->
-<section class="page">
+<section class="page" id="card-x">
   <p class="kicker">Card do X</p>
-  <h2>Print de tweet, agora em azul Voyager</h2>
+  <h2>Print de tweet em azul Voyager</h2>
   <div class="media-row">
     <img class="shot" src="https://d8j0ntlcm91z4.cloudfront.net/user_3HCH2hCBDXW1q3Lxm2VntHGqpMj/hf_20261016_191702_aad89d02-35d4-4475-b2d0-48af520aeb5e.png" alt="Card estilo print de tweet">
     <div>
-      <p>Borda, arroba e ícones passam para o azul Voyager. O texto segue editável no Canva, com a foto dele no avatar.</p>
+      <p>Borda, arroba e ícones em azul Voyager. Texto editável no Canva. Foto real do Nícolas no avatar, colocada manualmente.</p>
     </div>
   </div>
 </section>
 
-<!-- CORREÇÕES + PASSOS -->
+<!-- APLICAÇÃO UNIFICADA -->
+<section class="page" id="aplicacao">
+  <p class="kicker">Aplicação unificada</p>
+  <h2>Uma direção para todos os canais</h2>
+  <p>O cassette futurism, a paleta e o par de fontes valem igualmente para cada ponto de contato da marca.</p>
+  <div class="apps">
+    <div class="app-card"><div class="tag">Canal</div><h3>Instagram @nickbargiela</h3><p>Posts, reels, stories e destaques. Todo o conteúdo de estreia e recorrente.</p></div>
+    <div class="app-card"><div class="tag">Site</div><h3>Claude para Humanos</h3><p>Blog pessoal. Mesma paleta, mesmas fontes, fundo preto. Sinal azul nos links e CTAs.</p></div>
+    <div class="app-card"><div class="tag">Comercial</div><h3>Propostas e PDFs</h3><p>Documentos de entrega e propostas para clientes. Fundo escuro, tipografia do sistema, logo Voyager no rodapé.</p></div>
+    <div class="app-card"><div class="tag">Empresa</div><h3>Voyager Sistemas Inteligentes</h3><p>O azul do logo Voyager é o azul de sinal de toda a marca pessoal. Convergência total.</p></div>
+  </div>
+</section>
+
+<!-- FERRAMENTAS -->
+<section class="page" id="ferramentas">
+  <p class="kicker">Ferramentas de produção</p>
+  <h2>Controle fino das edições</h2>
+  <p>Três ferramentas trabalham em conjunto para gerar, ajustar e entregar cada peça.</p>
+  <div class="tools">
+    <div class="tool-card"><div class="name">Higgsfield</div><p>Geração de imagens via IA. Cenários cassette futurism com controle de prompt.</p></div>
+    <div class="tool-card"><div class="name">Figma</div><p>Ajuste fino de composição, tipografia e layout. Vetorização e refinamento de logos.</p></div>
+    <div class="tool-card"><div class="name">Canva</div><p>Templates editáveis para o dia a dia. Troca rápida de copy, card do X, stories.</p></div>
+  </div>
+</section>
+
+<!-- CASES -->
 <section class="page">
-  <p class="kicker">Correções e próximos passos</p>
-  <h2>O que já ajustamos e o que vem</h2>
-  <ul class="checks">
-    <li>Azul pálido trocado pelo azul Voyager em setas, labels e numeração.</li>
-    <li>Sépia virou âmbar, usado só dentro de imagem.</li>
-    <li>Subtítulo da prova em número agora em grotesca.</li>
-    <li>Etiqueta da fita sem cedilha e reel sem seta.</li>
-    <li>Grade neon substituída pelo painel bege com LED azul.</li>
-  </ul>
-  <ol class="steps">
-    <li><div><h3>Travar os templates no Canva</h3><p>As bases, mais página interna de carrossel, capa de reels e story.</p></div></li>
-    <li><div><h3>Produzir os 16 posts de estreia</h3><p>No sistema novo, com os números liberados.</p></div></li>
-    <li><div><h3>Levar a paleta ao site e às propostas</h3><p>Mesma regra de cor e fontes, para fechar a unificação.</p></div></li>
-  </ol>
-  <div class="pending">
-    <p>Pendente do Nick: o vetor do logo Voyager com o ponto em #1675F9, para fecharmos o lockup com o wordmark.</p>
+  <p class="kicker">Regra de cases</p>
+  <h2>Anonimato por padrão</h2>
+  <p>Resultados de clientes aparecem por nicho e número, nunca por nome. A exceção é o case Divos da IA, que pode aparecer com nome, com autorização do Nícolas.</p>
+  <div class="rules">
+    <div class="rule"><div class="icon">OK</div><div><h3>Exemplo correto</h3><p>"Consultoria de 4 horas reduziu processos manuais em 80% para empresa do setor jurídico."</p></div></div>
+    <div class="rule"><div class="icon">NÃO</div><div><h3>Nunca assim</h3><p>"A empresa XYZ Advogados contratou nosso serviço e obteve resultado..."</p></div></div>
   </div>
 </section>
 
